@@ -63,16 +63,17 @@ class StoreSpider(Spider):
             #     }
 
         elif "casasbahia.com.br" in response.url:
-            if response.css('h1.css-rfo7gs.eym5xli0::text').get():
-                if response.css('span.product-price-value::text').get():
-                    yield {
-                        'product': response.css('h1.css-rfo7gs.eym5xli0::text').get().strip(),
-                        'price': response.css('span.product-price-value::text').get().replace("R$&nbsp;", "").strip(),
-                        'product-status': 'Available',
-                        'store': 'Casas Bahia',
-                        'request-status': response.status,
-                        'link': response.url,
-                    }
+            pass
+            # if response.css('h1.css-rfo7gs.eym5xli0::text').get():
+            #     if response.css('span.product-price-value::text').get():
+            #         yield {
+            #             'product': response.css('h1.css-rfo7gs.eym5xli0::text').get().strip(),
+            #             'price': response.css('span.product-price-value::text').get().replace("R$&nbsp;", "").strip(),
+            #             'product-status': 'Available',
+            #             'store': 'Casas Bahia',
+            #             'request-status': response.status,
+            #             'link': response.url,
+            #         }
             #     else:
             #         yield {
             #             'product': response.css('h1.css-rfo7gs eym5xli0::text').get().strip(),
