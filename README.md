@@ -21,3 +21,6 @@ or:
  
  
 (I made one .csv smaller, just to test)
+
+
+For the querys, I created a database in mysql, so it is necessary install it.
