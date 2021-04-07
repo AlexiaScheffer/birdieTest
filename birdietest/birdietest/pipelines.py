@@ -14,9 +14,7 @@
 class BirdietestPipeline:
     def process_item(self, item, spider):
         return item
-
-
-
+#
 # class MongoDbPipeline(object):
 #     def __init__(self):
 #         connection = pymongo.MongoClient(
