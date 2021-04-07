@@ -107,9 +107,6 @@ MONGODB_PORT = 27017
 MONGODB_DB = "testebirdie"
 MONGODB_COLLECTION = "products"
 
-#MONGO_URI = 'mongodb+srv://USERNAME:PASSWORD@birdiedatabase-odg0m.gcp.mongodb.net/test?retryWrites=true&w=majority'
-#MONGO_DATABASE = 'birdie'
-
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

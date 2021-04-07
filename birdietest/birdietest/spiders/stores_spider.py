@@ -2,6 +2,7 @@ from scrapy import Request
 from scrapy import Spider
 from .. import items
 
+# scrapy crawl storespider -a filename=minioffers.csv
 # scrapy crawl storespider -a filename=minioffers.csv -o items.json
 # scrapy crawl storespider -a filename=minioffers.csv -O minioutput.json
 # pip freeze > requirements.txt
