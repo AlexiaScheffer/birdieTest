@@ -2,66 +2,47 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
-
 # useful for handling different item types with a single interface
-# from itemadapter import ItemAdapter
-# import pymongo
-# import logging
-# from scrapy.utils.project import get_project_settings
-# from birdietest.birdietest import settings
+from itemadapter import ItemAdapter
+
+import pymongo
+import logging
+
 
 class BirdietestPipeline:
     def process_item(self, item, spider):
         return item
-#
-# class MongoDbPipeline(object):
-#     def __init__(self):
-#         connection = pymongo.MongoClient(
-#             settings['MONGODB_SERVER'],
-#             settings['MONGODB_PORT']
-#         )
-#         db = connection[settings['MONGODB_DB']]
-#         self.collection = db[settings['MONGODB_COLLECTION']]
-#
-#     def process_item(self, item, spider):
-#         for data in item:
-#             if not data:
-#                 raise DropItem("Missing data!")
-#         self.collection.update({'url': item['url']}, dict(item), upsert=True)
-#         log.msg("Question added to MongoDB database!",
-#                 level=log.DEBUG, spider=spider)
-#         return item
-#
-#     collection_name = 'products'
-#
-#     class BirdietestPipeline:
-#         def process_item(self, item, spider):
-#             return item
-#
-#     def __init__(self, mongo_uri, mongo_db):
-#         self.mongo_uri = mongo_uri
-#         self.mongo_db = mongo_db
-#
-#     @classmethod
-#     def from_crawler(cls, crawler):
-#         return cls(
-#             mongo_uri=crawler.settings.get('MONGODB_SERVER'),
-#             mongo_db=crawler.settings.get('MONGO_DB')
-#         )
-#
-#     def open_spider(self, spider):
-#         self.client = pymongo.MongoClient(self.mongo_uri)
-#         self.db = self.client[self.mongo_db]
-#         # self.db[self.collection_name].delete_many({})
-#         # self.db['products'].delete_many({})
-#
-#     def close_spider(self, spider):
-#         self.client.close()
-#
-#     def process_item(self, item, spider):
-#         self.db[self.collection_name].insert(dict(item))
-#         logging.debug('Post added to MongoDB.')
-#         return item
 
 
+class MongoDBPipeline(object):
+    collection_name = 'products'
+
+    def __init__(self, mongo_uri, mongo_db):
+        self.mongo_uri = mongo_uri
+        self.mongo_db = mongo_db
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        # pull in information from settings.py
+
+        return cls(
+            mongo_uri=crawler.settings.get('MONGODB_SERVER'),
+            mongo_db=crawler.settings.get('MONGODB_DB')
+        )
+
+    def open_spider(self, spider):
+        # initializing spider
+        # opening db connection
+
+        self.client = pymongo.MongoClient(self.mongo_uri)
+        self.db = self.client[self.mongo_db]
+
+    def close_spider(self, spider):
+        # clean up when spider is closed
+        self.client.close()
+
+    def process_item(self, item, spider):
+        # how to handle each post
+        self.db[self.collection_name].insert(dict(item))
+        logging.debug('Post added to MongoDB.')
+        return item

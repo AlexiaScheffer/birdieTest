@@ -2,7 +2,7 @@ from scrapy import Request
 from scrapy import Spider
 from .. import items
 
-# scrapy crawl storespider -a filename=minioffers.csv -o items.json -t json
+# scrapy crawl storespider -a filename=minioffers.csv -o items.json
 # scrapy crawl storespider -a filename=minioffers.csv -O minioutput.json
 # pip freeze > requirements.txt
 
@@ -11,7 +11,7 @@ class StoreSpider(Spider):
     name = 'storespider'
     start_urls = []
 
-#    handle_httpstatus_list = [301, 302]
+#     handle_httpstatus_list = [301, 302]
 
     def __init__(self, filename=None, **kwargs):
         if filename:

@@ -94,13 +94,22 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'birdietest.pipelines.BirdietestPipeline': 300,
-#}
-
 # ITEM_PIPELINES = {
-#     'birdietest.pipelines.MongoDbPipeline': 300,
+#    'birdietest.pipelines.BirdietestPipeline': 300,
 # }
+
+ITEM_PIPELINES = {
+    'birdietest.pipelines.MongoDBPipeline': 300,
+}
+
+MONGODB_SERVER = "localhost"
+MONGODB_PORT = 27017
+MONGODB_DB = "testebirdie"
+MONGODB_COLLECTION = "products"
+
+#MONGO_URI = 'mongodb+srv://USERNAME:PASSWORD@birdiedatabase-odg0m.gcp.mongodb.net/test?retryWrites=true&w=majority'
+#MONGO_DATABASE = 'birdie'
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -123,10 +132,4 @@ AUTOTHROTTLE_ENABLED = True
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# MONGODB_SERVER = "localhost"
-# MONGODB_PORT = 27017
-# MONGODB_DB = "testebirdie"
-# MONGODB_COLLECTION = "products"
 
-#MONGO_URI = 'mongodb+srv://USERNAME:PASSWORD@birdiedatabase-odg0m.gcp.mongodb.net/test?retryWrites=true&w=majority'
-#MONGO_DATABASE = 'birdie'
