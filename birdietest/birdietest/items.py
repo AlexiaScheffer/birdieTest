@@ -11,9 +11,15 @@ from scrapy.item import Item, Field
 #     # name = scrapy.Field()
 #     pass
 
+
 class StoresItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    primary_key = Field()
+    description = Field()
+    breadcrumb = Field()
+    score = Field()
+    score_count = Field()
     product = Field()
     price = Field()
     product_status = Field()
